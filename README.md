@@ -43,6 +43,8 @@ Examples
   non-threaded properties are broken in multi-threading environment.
 * ``issue-602.php`` -  The script for reproducing [issue #602][4].
 * ``issue-603.php`` -  The script for reproducing [issue #603][5].
+* ``local-variable-issue.php`` - The script to demonstrate local variables are
+  destroyed in pthreads v2.
 
 References
 ----------
