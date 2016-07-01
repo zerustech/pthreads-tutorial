@@ -39,8 +39,10 @@ Examples
   threads, workers and pools.
 * ``worker-run-threads-serially-demo.php`` - a example to demonstrate how
   threads inside a worker are executed serially.
-* ``array-property-issue.php`` - a example to demonstrate how array properties
-  are broken in multi-threading environment.
+* ``array-property-issue.php`` - a example to demonstrate array can't be used as
+  properties of threaded objects.
+* ``non-threaded-property-issue.php`` - a example to demonstrate non-threaded
+  objects can't be used as properties of threaded objects.
 * ``issue-602.php`` -  The script for reproducing [issue #602][4].
 * ``issue-603.php`` -  The script for reproducing [issue #603][5].
 * ``local-variable-issue.php`` - The script to demonstrate local variables are

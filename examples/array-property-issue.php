@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ZerusTech\Tutorial\Pthreads\IssueNonThreadedProperties;
+namespace ZerusTech\Tutorial\Pthreads\IssueArrayProperties;
 
 /**
  * This is a threaded queue that actually won't work.
@@ -48,7 +48,15 @@ class BadThreadedQueue extends \Threaded
      */
     public function report()
     {
-        printf("[%s]\n", implode(',', $this->data));
+        $data = [];
+
+        foreach ($this->data as $element) {
+
+            $data[] = $element;
+
+        }
+
+        printf("[%s]\n", implode(',', $data));
     }
 
     /**
