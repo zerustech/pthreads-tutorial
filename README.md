@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/zerustech/pthreads-tutorial.svg)](https://travis-ci.org/zerustech/pthreads-tutorial)
+
 ZerusTech Pthreads Tutorial
 ================================================
 This is a tutorial of the [krakjoe/pthreads][1] extension v3 for ``PHP7``.
