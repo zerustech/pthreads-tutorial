@@ -1,0 +1,23 @@
+{
+    "name": "zerustech/pthreads-tutorial",
+    "description": "ZerusTech Pthreads Tutorial",
+    "type": "library",
+    "keywords": ["tutorial", "pthreads", "pthreads API 2.x"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Lee",
+            "email": "michael.lee@zerustech.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "ext-pthreads": "^2.0.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "ZerusTech\\Tutorial\\": "./src",
+            "ZerusTech\\Tutorial\\Tests\\": "./Tests"
+        }
+    }
+}

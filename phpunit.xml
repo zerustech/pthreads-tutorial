@@ -1,0 +1,7 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="ZerusTech Pthreads Tutorial Test Suite / Default">
+            <directory>./Tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
