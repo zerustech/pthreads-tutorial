@@ -31,30 +31,21 @@ $ # load pthreads.so in php.ini
 Examples
 -------------
 
-* ``producer-consumer-basic-demo.php`` - a producer/consumer example with
-  threads.
+* ``Tests/Pthreads/BasicProducerConsumerTest.php`` - a producer/consumer example with threads.
 
-* ``producer-consumer-worker-demo.php`` - a producer/consumer example with
-  threads and workers.
+* ``Tests/Pthreads/WorkerProducerConsumer.php`` - a producer/consumer example with threads and workers.
 
-* ``producer-consumer-pool-demo.php`` - a producer/consumer example with
-  threads, workers and pools.
+* ``Tests/Pthreads/PoolProducerConsumer.php`` - a producer/consumer example with threads, workers and pools.
 
-* ``worker-run-threads-serially-demo.php`` - an example to demonstrate how
-  threads inside a worker are executed serially.
+* ``Tests/Pthreads/IssueArrayPropertyTest.php`` - an example to demonstrate array can't be used as properties of threaded object.
 
-* ``array-property-issue.php`` - an example to demonstrate array can't be used as
-  properties of threaded objects.
+* ``Tests/Pthreads/IssueNonThreadedPropertyTest.php`` - an example to demonstrate how non-threaded properties are broken in multi-threading environment.
 
-* ``non-threaded-property-issue.php`` - an example to demonstrate how
-  non-threaded properties are broken in multi-threading environment.
+* ``Tests/Pthreads/Issue602Test.php`` -  The script for reproducing [issue #602][4].
 
-* ``issue-602.php`` -  The script for reproducing [issue #602][4].
+* ``Tests/Pthreads/Issue603Test.php`` -  The script for reproducing [issue #603][5].
 
-* ``issue-603.php`` -  The script for reproducing [issue #603][5].
-
-* ``local-variable-issue.php`` - The script to demonstrate local variables in
-  pthreads are destroyed.
+* ``Tests/Pthreads/IssueLocalVariableTest.php`` - The script to demonstrate local variables in pthreads are destroyed.
 
 References
 ----------
