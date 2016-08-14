@@ -87,7 +87,7 @@ class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
             $pool['c'][$i]->start();
         }
 
-        // Issue #602 has been fixed in pthreads API v3, so there is no need to 
+        // Issue #602 has been fixed in pthreads API v3, so there is no need to
         // do the join here.
         /*
         for ($i = 0; $i < 2; $i++) {

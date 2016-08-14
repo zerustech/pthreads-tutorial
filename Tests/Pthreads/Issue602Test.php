@@ -32,7 +32,7 @@ class Issue602Test extends \PHPUnit_Framework_TestCase
         $pool = [];
         $pool[] = new Producer($inventory, 'p#1', 5);
         $pool[0]->start();
-        // Issue #602 has been fixed in pthreads API v3, so there is no need to 
+        // Issue #602 has been fixed in pthreads API v3, so there is no need to
         // do the join here.
         // $pool[0]->join();
     }

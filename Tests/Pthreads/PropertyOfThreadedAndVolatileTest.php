@@ -12,8 +12,8 @@
 namespace ZerusTech\Tutorial\Tests\Pthreads;
 
 /**
- * Tutorial for demonstrating the fact that threaded properties of threaded 
- * object can not be overridden, while threaded properties of volatile object 
+ * Tutorial for demonstrating the fact that threaded properties of threaded
+ * object can not be overridden, while threaded properties of volatile object
  * can be.
  *
  * @author Michael Lee <michael.lee@zerustech.com>
@@ -21,7 +21,7 @@ namespace ZerusTech\Tutorial\Tests\Pthreads;
 class PropertyOfThreadedAndVolatileTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Tries to override threaded property of a threaded object. 
+     * Tries to override threaded property of a threaded object.
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Threaded members previously set to Threaded objects are immutable, cannot overwrite data
      */
@@ -33,7 +33,7 @@ class PropertyOfThreadedAndVolatileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tries to override threaded property of a volatile object. 
+     * Tries to override threaded property of a volatile object.
      */
     public function testOverrideThreadedPropertyOfVolatileObject()
     {

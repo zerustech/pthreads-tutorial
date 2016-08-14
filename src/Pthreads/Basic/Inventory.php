@@ -88,7 +88,7 @@ class Inventory extends \Threaded
      * product, because currently the inventory is full.
      *
      * NOTE: Issue {@link https://github.com/krakjoe/pthreads/issues/603
-     * 603} has been fixed in pthreads API v3, it's possible to pass object as 
+     * 603} has been fixed in pthreads API v3, it's possible to pass object as
      * method arguments.
      *
      * @param string $producer The producer.

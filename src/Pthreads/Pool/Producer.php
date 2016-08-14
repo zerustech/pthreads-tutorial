@@ -68,7 +68,7 @@ class Producer extends WorkerProducer implements \Collectable
     }
 
     /**
-     * This method returns a boolean that indicates whether current thread can 
+     * This method returns a boolean that indicates whether current thread can
      * be collected.
      *
      * @return bool True if current thread can be collected, false otherwise.
