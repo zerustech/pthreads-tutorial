@@ -1,6 +1,6 @@
 ZerusTech Pthreads Tutorial
 ================================================
-This is a tutorial of the [krakjoe/pthreads][1] extension v2 for ``PHP5``.
+This is a tutorial of the [krakjoe/pthreads][1] extension v3 for ``PHP7``.
 
 Installation
 -------------
@@ -13,7 +13,7 @@ $ ./configure --enable-maintainer-zts ...
 $ make
 $ make install
 ```
-Download the latest 2.x release from [Pecl][3]
+Download the latest 3.x release from [Pecl][3]
 
 ```bash
 $ cd <php-source-directory>/ext
@@ -46,6 +46,8 @@ Examples
 * ``Tests/Pthreads/Issue603Test.php`` -  The script for reproducing [issue #603][5].
 
 * ``Tests/Pthreads/IssueLocalVariableTest.php`` - The script to demonstrate local variables in pthreads are destroyed.
+
+* ``Tests/Pthreads/PropertyOfThreadedAndVolatileTest.php`` -  The script to demonstrate different accessibilities of threaded and volatile objects.
 
 References
 ----------
