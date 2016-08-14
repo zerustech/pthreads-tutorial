@@ -20,7 +20,7 @@ namespace ZerusTech\Tutorial\Tests\Pthreads;
 class IssueNonThreadedPropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test with array property in threaded object.
+     * Test with non-threaded property in threaded object.
      */
     public function testNonThreadedPropertyInThreadedObject()
     {
