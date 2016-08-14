@@ -27,11 +27,7 @@ class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
      */
     public function testOneProducerAndOneConsumer()
     {
-        // The product queue must be defined outside the inventory object.
-        // otherwise, it will be reset to ``null``.
-        $queue = new \Threaded();
-
-        $inventory = new Inventory($queue, 5);
+        $inventory = new Inventory(5);
 
         $p1 = new Producer($inventory, 'p1', 5, '*', 0);
         $c1 = new Consumer($inventory, 'c1', 5, 1);
@@ -51,8 +47,7 @@ class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
      */
     public function testTwoProducersAndTwoConsumers()
     {
-        $queue = new \Threaded();
-        $inventory = new Inventory($queue, 5);
+        $inventory = new Inventory(5);
 
         $p1 = new Producer($inventory, 'p1', 5, '*', 0);
         $p2 = new Producer($inventory, 'p2', 5, '*', 0);
@@ -78,9 +73,7 @@ class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
      */
     public function testMultipleProducersAndConsumersInArray()
     {
-        // Multiple producers and consumers in an array
-        $queue = new \Threaded();
-        $inventory = new Inventory($queue, 5);
+        $inventory = new Inventory(5);
 
         $pool = [];
 
@@ -94,15 +87,14 @@ class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
             $pool['c'][$i]->start();
         }
 
-        // Due to issue #602, at least one thread must be joined, otherwise, a segment
-        // fault occurs.
-        // NOTE: $pool['p'][0]->join(), this won't work,
-        // Try other threads, instead
-        // $pool['p'][1]->join();
+        // Issue #602 has been fixed in pthreads API v3, so there is no need to 
+        // do the join here.
+        /*
         for ($i = 0; $i < 2; $i++) {
             $pool['p'][$i]->join();
             $pool['c'][$i]->join();
         }
+        */
 
         printf("\nTwo producers and two consumers in an array have finished their jobs ... \n");
         printf("%'=80s\n\n",'');

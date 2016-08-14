@@ -33,12 +33,9 @@ class IssueArrayPropertyTest extends \PHPUnit_Framework_TestCase
 
         $container->data[] = 'd';
 
-        // You might thought $container->data is equal to: ['a', 'b', 'c', 'd'],
-        // but in fact it is: ['a', 'b', 'c']
-        // So it's clear that passing array to threaded object won't work.
-        $this->assertEquals(['a', 'b', 'c'], $container->data);
+        $this->assertEquals(['a', 'b', 'c', 'd'], array_values((array)$container->data));
 
-        printf("\nIt does not work to pass an array property to a threaded object.\n");
+        printf("\nArray arguments are converted \\Volatile objects in API v3.\n");
         printf("%'=64s\n", '');
     }
 

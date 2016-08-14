@@ -27,8 +27,7 @@ class PoolProducerConsumerTest extends \PHPUnit_Framework_TestCase
      */
     public function testMultipleProducersAndConsumersInPools()
     {
-        $queue = new \Threaded();
-        $inventory = new Inventory($queue, 5);
+        $inventory = new Inventory(5);
 
         $producers = new \Pool(2, 'ZerusTech\Tutorial\Pthreads\Pool\InventoryWorker', ['pw-', $inventory]);
         $producers->name = 'p-pool-1';

@@ -28,8 +28,7 @@ class WorkerProducerConsumerTest extends \PHPUnit_Framework_TestCase
      */
     public function testMultipleProducersAndConsumersInWorkers()
     {
-        $queue = new \Threaded();
-        $inventory = new Inventory($queue, 5);
+        $inventory = new Inventory(5);
 
         for ($i = 0; $i < 4; $i++) {
             $pool['p'][] = new Producer("p-$i", 5, '*', 0);
@@ -51,21 +50,18 @@ class WorkerProducerConsumerTest extends \PHPUnit_Framework_TestCase
             $workers['c'][$i]->inventory = $inventory;
             $workers['c'][$i]->stack($pool['c'][2*$i]);
             $workers['c'][$i]->stack($pool['c'][2*$i + 1]);
-
         }
 
         for ($i = 0; $i < 2; $i++) {
 
             $workers['p'][$i]->start();
             $workers['c'][$i]->start();
-
         }
 
         for ($i = 0; $i < 2; $i++) {
 
             $workers['p'][$i]->shutdown();
             $workers['c'][$i]->shutdown();
-
         }
 
         printf("\nThread objects in workers ... \n");
