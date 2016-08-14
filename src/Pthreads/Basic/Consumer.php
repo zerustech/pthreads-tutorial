@@ -73,7 +73,7 @@ class Consumer extends \Thread
         while ($remaining > 0) {
 
             // Consumes one product from the inventory.
-            $product = $this->inventory->get($this->name);
+            $product = $this->inventory->get($this);
 
             // Slows down and allow producer to produce more products.
             if ($this->delay > 0) {

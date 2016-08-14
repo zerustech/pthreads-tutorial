@@ -43,9 +43,9 @@ class Inventory extends \Threaded
      * @param Threaded $queue The product queue.
      * @param int $size The inventory capacity.
      */
-    public function __construct(\Threaded $queue, $size)
+    public function __construct($size)
     {
-        $this->queue = $queue;
+        $this->queue = new \Threaded();
 
         $this->size = $size;
     }
@@ -87,31 +87,30 @@ class Inventory extends \Threaded
      * - the producer releases the lock and waits for a consumer to consumes a
      * product, because currently the inventory is full.
      *
-     * NOTE: due to issue {@link https://github.com/krakjoe/pthreads/issues/603
-     * 603}, we can't pass producer instance to this method. In stead, we have
-     * to pass worker name and producer name as arguments.
+     * NOTE: Issue {@link https://github.com/krakjoe/pthreads/issues/603
+     * 603} has been fixed in pthreads API v3, it's possible to pass object as 
+     * method arguments.
      *
-     * @param string $producerName The name of current producer.
+     * @param string $producer The producer.
      * @param string $product The product to be produced.
-     * @param string $workerName The name of current worker.
      * @return void
      */
-    public function put($producerName, $product, $workerName = '')
+    public function put($producer, $product)
     {
         $this->synchronized(
 
-            function($self, $workerName, $producerName, $product){
+            function($self, $producer, $product){
 
                // Current producer should wait, as long as the inventory is full.
                while ($self->queue->count() === $self->size) {
 
-                   if ('' !== $workerName) {
+                   if (null !== $producer->worker) {
 
-                       printf("Producer \033[32m%s\033[0m in worker \033[33m%s\033[0m is waiting for consumer : [%s] ...\n", $producerName, $workerName, (string)$self);
+                       printf("Producer \033[32m%s\033[0m in worker \033[33m%s\033[0m is waiting for consumer : [%s] ...\n", $producer->name, $producer->worker->name, (string)$self);
 
                    } else {
 
-                       printf("Producer \033[32m%s\033[0m is waiting for consumer : [%s] ...\n", $producerName, (string)$self);
+                       printf("Producer \033[32m%s\033[0m is waiting for consumer : [%s] ...\n", $producer->name, (string)$self);
                    }
 
                     // Waits on the inventory object.
@@ -132,13 +131,13 @@ class Inventory extends \Threaded
 
                 $self->queue[] = $product;
 
-                if ('' !== $workerName) {
+                if (null !== $producer->worker) {
 
-                    printf("Producer \033[32m%s\033[0m in worker \033[33m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producerName, $workerName, $product, $before, $product, $before);
+                    printf("Producer \033[32m%s\033[0m in worker \033[33m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producer->name, $producer->worker->name, $product, $before, $product, $before);
 
                 } else {
 
-                    printf("Producer \033[32m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producerName, $product, $before, $product, $before);
+                    printf("Producer \033[32m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producer->name, $product, $before, $product, $before);
                 }
 
                 // Now, at least one product has been put into the inventory, so
@@ -147,7 +146,7 @@ class Inventory extends \Threaded
                 $self->notify();
             },
 
-            $this, $workerName, $producerName, $product
+            $this, $producer, $product
         );
     }
 
@@ -165,23 +164,23 @@ class Inventory extends \Threaded
      * @param string $consumerName The name of current consumer.
      * @return string The product consumed.
      */
-    public function get($consumerName, $workerName = '')
+    public function get($consumer)
     {
         return $this->synchronized(
 
-            function($self, $workerName, $consumerName){
+            function($self, $consumer){
 
                 // Current consumer should wait, as long as the inventory is
                 // empty.
                 while (0 === $self->queue->count()) {
 
-                    if ('' !== $workerName) {
+                    if (null !== $consumer->worker) {
 
-                        printf("Consumer \033[31m%s\033[0m in worker \033[33m%s\033[0m is waiting for producer : [%s] ...\n", $consumerName, $workerName, (string)$self);
+                        printf("Consumer \033[31m%s\033[0m in worker \033[33m%s\033[0m is waiting for producer : [%s] ...\n", $consumer->name, $consumer->worker->name, (string)$self);
 
                     } else {
 
-                        printf("Consumer \033[31m%s\033[0m is waiting for producer : [%s] ...\n", $consumerName, (string)$self);
+                        printf("Consumer \033[31m%s\033[0m is waiting for producer : [%s] ...\n", $consumer->name, (string)$self);
                     }
 
                     // Waits on the inventory object.
@@ -201,13 +200,13 @@ class Inventory extends \Threaded
 
                 $p1 = $self->size - $self->queue->count();
 
-                if ('' !== $workerName) {
+                if (null !== $consumer->worker) {
 
-                    printf("Consumer \033[31m%s\033[0m in worker \033[33m%s\033[0m is consuming one product: [%s\033[31m%-{$p1}s\033[0m] => \033[31m%s\033[0m ... [%-{$p2}s]\n", $consumerName, $workerName, (string)$self, $product, $product, (string)$self);
+                    printf("Consumer \033[31m%s\033[0m in worker \033[33m%s\033[0m is consuming one product: [%s\033[31m%-{$p1}s\033[0m] => \033[31m%s\033[0m ... [%-{$p2}s]\n", $consumer->name, $consumer->worker->name, (string)$self, $product, $product, (string)$self);
 
                 } else {
 
-                    printf("Consumer \033[31m%s\033[0m is consuming one product: [%s\033[31m%-{$p1}s\033[0m] => \033[31m%s\033[0m ... [%-{$p2}s]\n", $consumerName, (string)$self, $product, $product, (string)$self);
+                    printf("Consumer \033[31m%s\033[0m is consuming one product: [%s\033[31m%-{$p1}s\033[0m] => \033[31m%s\033[0m ... [%-{$p2}s]\n", $consumer->name, (string)$self, $product, $product, (string)$self);
                 }
 
                 // Now, at least one product has been taken out of the
@@ -218,7 +217,7 @@ class Inventory extends \Threaded
                 return $product;
             },
 
-            $this, $workerName, $consumerName
+            $this, $consumer
         );
     }
 }

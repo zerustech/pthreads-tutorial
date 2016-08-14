@@ -86,7 +86,7 @@ class Producer extends \Thread
         while ($remaining > 0) {
 
             // Produces one product into the inventory.
-            $this->inventory->put($this->name, $this->product);
+            $this->inventory->put($this, $this->product);
 
             // Slows down and allow consumer to consume more products.
             if ($this->delay > 0) {
