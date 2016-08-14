@@ -11,6 +11,8 @@
 
 namespace ZerusTech\Tutorial\Pthreads\Pool;
 
+use ZerusTech\Tutorial\Pthreads\Worker\Consumer as WorkerConsumer;
+
 /**
  * A demo consumer.
  *
@@ -18,40 +20,21 @@ namespace ZerusTech\Tutorial\Pthreads\Pool;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class Consumer extends \Collectable
+class Consumer extends WorkerConsumer implements \Collectable
 {
     /**
-     * @var string The consumer name.
+     * @var bool The boolean to indicates if current thread can be collected.
      */
-    private $name;
+    private $garbage;
 
     /**
-     * @var int The amount of products to be consumed.
-     */
-    private $amount;
-
-    /**
-     * This property is used to slow down the thread to simulate variant
-     * parallel circumstances.
-     *
-     * @var int The amount of delay, in seconds, after each product is consumed.
-     */
-    private $delay;
-
-    /**
-     * Constructor.
-     *
-     * @param Threaded $inventory The shared inventory object.
-     * @param int $amount The amount of products to be consumed.
-     * @param int $delay The delay, in seconds.
+     * {@inheritdoc}
      */
     public function __construct($name, $amount, $delay = 0)
     {
-        $this->amount = $amount;
+        parent::__construct($name, $amount, $delay);
 
-        $this->delay = $delay;
-
-        $this->name = $name;
+        $this->garbage = true;
     }
 
     /**
@@ -64,9 +47,7 @@ class Consumer extends \Collectable
 
         while ($remaining > 0) {
 
-            // Consumes one product from the inventory.
-            // Reuses the inventory in the context of current worker.
-            $product = $this->worker->inventory->get($this->name, $this->worker->name);
+            $product = $this->worker->inventory->get($this);
 
             // Slows down and allow producer to produce more products.
             if ($this->delay > 0) {
@@ -78,6 +59,17 @@ class Consumer extends \Collectable
             $remaining--;
         }
 
-        $this->setGarbage();
+        $this->garbage = true;
+    }
+
+    /**
+     * This method returns a boolean that indicates whether current thread can 
+     * be collected.
+     *
+     * @return bool True if current thread can be collected, false otherwise.
+     */
+    public function isGarbage(): bool {
+
+        return $this->garbage;
     }
 }

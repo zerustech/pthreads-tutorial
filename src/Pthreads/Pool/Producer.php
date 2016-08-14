@@ -11,6 +11,8 @@
 
 namespace ZerusTech\Tutorial\Pthreads\Pool;
 
+use ZerusTech\Tutorial\Pthreads\Worker\Producer as WorkerProducer;
+
 /**
  * A demo producer.
  *
@@ -21,52 +23,21 @@ namespace ZerusTech\Tutorial\Pthreads\Pool;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class Producer extends \Collectable
+class Producer extends WorkerProducer implements \Collectable
 {
     /**
-     * @var string The name of producer.
+     * @var bool The boolean to indicates if current thread can be collected.
      */
-    private $name;
+    private $garbage;
 
     /**
-     * @var int The amount of products to be produced.
-     */
-    private $amount;
-
-    /*
-     * For demonstration purpose, we use string as the product type.
-     * However, you can use anything type for it, as long as it has implemented
-     * the ``__toString()`` method.
-     *
-     * @var string The product template.
-     */
-    private $product;
-
-    /**
-     * This property is used to slow down the thread to simulate variant
-     * parallel circumstances.
-     *
-     * @var int The amount of delay, in seconds, after each product is produced.
-     */
-    private $delay;
-
-    /**
-     * Constructor.
-     *
-     * @param Threaded $inventory The shared inventory object.
-     * @param int $amount The amount of products to be produced.
-     * @param string $product The template / prototype for producing products.
-     * @param int $delay The delay, in seconds.
+     * {@inheritdoc}
      */
     public function __construct($name, $amount, $product = '*', $delay = 0)
     {
-        $this->name = $name;
+        parent::__construct($name, $amount, $product, $delay);
 
-        $this->amount = $amount;
-
-        $this->product = $product;
-
-        $this->delay = $delay;
+        $this->garbage = false;
     }
 
     /**
@@ -81,7 +52,7 @@ class Producer extends \Collectable
 
             // Produces one product into the inventory.
             // Reuses the inventory in the context of current worker
-            $this->worker->inventory->put($this->name, $this->product, $this->worker->name);
+            $this->worker->inventory->put($this, $this->product);
 
             // Slows down and allow consumer to consume more products.
             if ($this->delay > 0) {
@@ -93,8 +64,17 @@ class Producer extends \Collectable
             $remaining--;
         }
 
-        // Marks current thread as "garbage", so that it can be collected by the
-        // collect() method of the pool.
-        $this->setGarbage();
+        $this->garbage = true;
+    }
+
+    /**
+     * This method returns a boolean that indicates whether current thread can 
+     * be collected.
+     *
+     * @return bool True if current thread can be collected, false otherwise.
+     */
+    public function isGarbage(): bool {
+
+        return $this->garbage;
     }
 }
