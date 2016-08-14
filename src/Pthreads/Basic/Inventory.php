@@ -136,7 +136,7 @@ class Inventory extends \Threaded
 
                     printf("Producer \033[32m%s\033[0m in worker \033[33m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producerName, $workerName, $product, $before, $product, $before);
 
-                } else { 
+                } else {
 
                     printf("Producer \033[32m%s\033[0m is producing one product: \033[32m%s\033[0m => [%{$p1}s] ... [\033[32m%{$p2}s\033[0m%s]\n", $producerName, $product, $before, $product, $before);
                 }

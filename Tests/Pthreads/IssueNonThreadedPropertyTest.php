@@ -17,7 +17,7 @@ namespace ZerusTech\Tutorial\Tests\Pthreads;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class NonThreadedPropertyIssueTest extends \PHPUnit_Framework_TestCase
+class IssueNonThreadedPropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test with array property in threaded object.

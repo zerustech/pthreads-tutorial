@@ -12,7 +12,7 @@
 namespace ZerusTech\Tutorial\Pthreads\Issue;
 
 /**
- * A task that does nothing but dumping current instance by calling 
+ * A task that does nothing but dumping current instance by calling
  * Dumper::dump()
  *
  * @author Michael Lee <michael.lee@zerustech.com>

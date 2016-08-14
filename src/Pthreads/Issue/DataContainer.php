@@ -24,7 +24,7 @@ class DataContainer extends \Threaded
     private $data;
 
     /**
-     * This method creates a new DataContainer instance and initializes 
+     * This method creates a new DataContainer instance and initializes
      * the ``$data`` property locally.
      * The local variable will be destroyed in pthreads API v2.x.
      */
