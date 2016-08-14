@@ -49,7 +49,7 @@ class Producer extends BaseProducer
         while ($remaining > 0) {
 
             // Produces one product into the inventory.
-            $this->worker->inventory->put($this->name, $this->product, $this->worker->name);
+            $this->worker->inventory->put($this, $this->product);
 
             // Slows down and allow consumer to consume more products.
             if ($this->delay > 0) {

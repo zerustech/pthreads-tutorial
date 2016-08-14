@@ -48,7 +48,7 @@ class Consumer extends BaseConsumer
         while ($remaining > 0) {
 
             // Consumes one product from the inventory.
-            $product = $this->worker->inventory->get($this->name, $this->worker->name);
+            $product = $this->worker->inventory->get($this);
 
             // Slows down and allow producer to produce more products.
             if ($this->delay > 0) {
