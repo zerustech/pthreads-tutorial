@@ -12,7 +12,11 @@
     ],
     "require": {
         "php": ">=7.0",
-        "ext-pthreads": "^3.1.6"
+        "ext-pthreads": "^3.1.6",
+        "phpunit/phpunit": "^6.1"
+    },
+    "scripts": {
+        "test": "php vendor/phpunit/phpunit/phpunit"
     },
     "autoload": {
         "psr-4": {
