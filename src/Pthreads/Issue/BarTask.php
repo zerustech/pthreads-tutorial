@@ -19,11 +19,13 @@ namespace ZerusTech\Tutorial\Pthreads\Issue;
  */
 class BarTask extends \Thread
 {
+    /** @var string */
     private $name;
 
+    /** @var Dumper */
     private $dumper;
 
-    public function __construct($name, $dumper)
+    public function __construct($name, Dumper $dumper)
     {
         $this->name = $name;
 

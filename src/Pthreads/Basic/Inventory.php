@@ -33,14 +33,14 @@ class Inventory extends \Threaded
      * This internal queue is also a threaded object, therefor it's a valid
      * property of current inventory object.
      *
-     * @var Threaded The product queue.
+     * @var \Threaded The product queue.
      */
     private $queue;
 
     /**
      * Constructor.
      *
-     * @param Threaded $queue The product queue.
+     * @param \Threaded $queue The product queue.
      * @param int $size The inventory capacity.
      */
     public function __construct($size)
