@@ -20,7 +20,7 @@ use ZerusTech\Tutorial\Pthreads\Issue\DataContainer;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class IssueLocalVariableTest extends \PHPUnit_Framework_TestCase
+class IssueLocalVariableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Local variables are not destroyed in pthreads API v3.

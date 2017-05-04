@@ -21,7 +21,7 @@ use ZerusTech\Tutorial\Pthreads\Worker\SerializedWork;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class WorkerProducerConsumerTest extends \PHPUnit_Framework_TestCase
+class WorkerProducerConsumerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Multiple producers and consumer in workers.

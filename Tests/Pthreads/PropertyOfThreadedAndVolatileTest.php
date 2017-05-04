@@ -18,7 +18,7 @@ namespace ZerusTech\Tutorial\Tests\Pthreads;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class PropertyOfThreadedAndVolatileTest extends \PHPUnit_Framework_TestCase
+class PropertyOfThreadedAndVolatileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Tries to override threaded property of a threaded object.

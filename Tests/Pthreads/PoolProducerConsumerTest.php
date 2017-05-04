@@ -20,7 +20,7 @@ use ZerusTech\Tutorial\Pthreads\Pool\Consumer;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class PoolProducerConsumerTest extends \PHPUnit_Framework_TestCase
+class PoolProducerConsumerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Multiple producers and consumer in pools.
