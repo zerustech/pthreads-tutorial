@@ -15,9 +15,6 @@
         "ext-pthreads": "^3.1.6",
         "phpunit/phpunit": "^6.1"
     },
-    "scripts": {
-        "test": "php vendor/phpunit/phpunit/phpunit"
-    },
     "autoload": {
         "psr-4": {
             "ZerusTech\\Tutorial\\": "./src",
