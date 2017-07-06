@@ -90,13 +90,12 @@ class BasicProducerConsumerTest extends \PHPUnit\Framework\TestCase
         }
 
         // Issue #602 has been fixed in pthreads API v3, so there is no need to
-        // do the join here.
-        /*
+        // do the join here. However, as bensbox reported in issue #2, it is
+        // better to do the join here.
         for ($i = 0; $i < 2; $i++) {
             $pool['p'][$i]->join();
             $pool['c'][$i]->join();
         }
-        */
 
         $this->AssertTrue(true);
         printf("\nTwo producers and two consumers in an array have finished their jobs ... \n");
