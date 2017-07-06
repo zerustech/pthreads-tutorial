@@ -30,5 +30,7 @@ class IssueLocalVariableTest extends \PHPUnit\Framework\TestCase
         $container = new DataContainer();
 
         $container->data[] = 'hello';
+
+        $this->AssertTrue(true);
     }
 }

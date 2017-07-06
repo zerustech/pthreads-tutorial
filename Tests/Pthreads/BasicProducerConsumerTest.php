@@ -38,6 +38,7 @@ class BasicProducerConsumerTest extends \PHPUnit\Framework\TestCase
         $p1->join();
         $c1->join();
 
+        $this->AssertTrue(true);
         printf("\nOne producer and one consumer have finished their jobs ... \n");
         printf("%'=80s\n\n",'');
     }
@@ -64,6 +65,7 @@ class BasicProducerConsumerTest extends \PHPUnit\Framework\TestCase
         $c1->join();
         $c2->join();
 
+        $this->AssertTrue(true);
         printf("\nTwo producers and two consumers have finished their jobs ... \n");
         printf("%'=80s\n\n",'');
     }
@@ -96,6 +98,7 @@ class BasicProducerConsumerTest extends \PHPUnit\Framework\TestCase
         }
         */
 
+        $this->AssertTrue(true);
         printf("\nTwo producers and two consumers in an array have finished their jobs ... \n");
         printf("%'=80s\n\n",'');
     }

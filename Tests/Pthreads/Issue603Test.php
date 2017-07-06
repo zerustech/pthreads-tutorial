@@ -66,5 +66,6 @@ class Issue603Test extends \PHPUnit\Framework\TestCase
         //
         // BarTask::run() is running: [ZerusTech\Tutorial\Pthreads\Issue\BarTask][#3] ...
         // Dumper::dump() is running: [ZerusTech\Tutorial\Pthreads\Issue\BarTask][#3] ...
+        $this->AssertTrue(true);
     }
 }

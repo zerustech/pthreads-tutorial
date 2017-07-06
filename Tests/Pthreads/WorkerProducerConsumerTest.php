@@ -65,6 +65,7 @@ class WorkerProducerConsumerTest extends \PHPUnit\Framework\TestCase
             $workers['c'][$i]->shutdown();
         }
 
+        $this->AssertTrue(true);
         printf("\nThread objects in workers ... \n");
         printf("Four producers and four consumers have finished their jobs inside two workers ... \n");
         printf("%'=128s\n\n",'');
@@ -85,6 +86,7 @@ class WorkerProducerConsumerTest extends \PHPUnit\Framework\TestCase
         $worker->start();
         $worker->shutdown();
 
+        $this->AssertTrue(true);
         printf("\nThreads inside a worker are executed serially\n");
         printf("The thread that was stacked earlier is executed sooner.\n");
         printf("%'=64s\n", '');

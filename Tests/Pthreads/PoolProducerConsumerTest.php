@@ -99,6 +99,7 @@ class PoolProducerConsumerTest extends \PHPUnit\Framework\TestCase
 
         $consumers->shutdown();
 
+        $this->AssertTrue(true);
         printf("\nThread objects in pools ... \n");
         printf("Four producers and four consumers have finished their jobs ... \n");
         printf("Producers and consumers are submitted to two pools: the producers pool and the consumers pool \n");

@@ -35,5 +35,6 @@ class Issue602Test extends \PHPUnit\Framework\TestCase
         // Issue #602 has been fixed in pthreads API v3, so there is no need to
         // do the join here.
         // $pool[0]->join();
+        $this->AssertTrue(true);
     }
 }

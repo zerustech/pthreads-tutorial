@@ -30,6 +30,8 @@ class PropertyOfThreadedAndVolatileTest extends \PHPUnit\Framework\TestCase
         $container = new \Threaded();
         $container->data = new \Threaded();
         $container->data = new \Threaded();
+
+        $this->AssertTrue(true);
     }
 
     /**
@@ -40,5 +42,7 @@ class PropertyOfThreadedAndVolatileTest extends \PHPUnit\Framework\TestCase
         $container = new \Volatile();
         $container->data = new \Threaded();
         $container->data = new \Threaded();
+
+        $this->AssertTrue(true);
     }
 }
