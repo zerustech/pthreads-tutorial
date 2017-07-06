@@ -20,7 +20,7 @@ use ZerusTech\Tutorial\Pthreads\Basic\Consumer;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class BasicProducerConsumerTest extends \PHPUnit_Framework_TestCase
+class BasicProducerConsumerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * One producer and one consumer as standalone variables.

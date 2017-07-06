@@ -1,5 +1,7 @@
 vendor
 .buildpath
 .project
+.idea
 .settings
 *.swp
+*.phar

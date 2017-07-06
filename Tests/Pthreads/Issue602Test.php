@@ -21,7 +21,7 @@ use ZerusTech\Tutorial\Pthreads\Basic\Producer;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class Issue602Test extends \PHPUnit_Framework_TestCase
+class Issue602Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test issue #602.

@@ -22,7 +22,7 @@ use ZerusTech\Tutorial\Pthreads\Issue\Dumper;
  *
  * @author Michael Lee <michael.lee@zerustech.com>
  */
-class Issue603Test extends \PHPUnit_Framework_TestCase
+class Issue603Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test issue #603.
