@@ -30,6 +30,7 @@ class WorkerProducerConsumerTest extends \PHPUnit\Framework\TestCase
     {
         $inventory = new Inventory(5);
 
+        $pool = [];
         for ($i = 0; $i < 4; $i++) {
             $pool['p'][] = new Producer("p-$i", 5, '*', 0);
             $pool['c'][] = new Consumer("c-$i", 5, 1);

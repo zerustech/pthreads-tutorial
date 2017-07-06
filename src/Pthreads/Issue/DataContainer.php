@@ -21,7 +21,7 @@ class DataContainer extends \Threaded
     /**
      * @var \Threaded The data.
      */
-    private $data;
+    public $data;
 
     /**
      * This method creates a new DataContainer instance and initializes

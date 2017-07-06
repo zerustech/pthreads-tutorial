@@ -21,14 +21,14 @@ namespace ZerusTech\Tutorial\Pthreads\Basic;
 class Producer extends \Thread
 {
     /**
-     * @var Threaded The shared inventory.
+     * @var \Threaded The shared inventory.
      */
-    private $inventory;
+    protected $inventory;
 
     /**
      * @var string The name of current producer.
      */
-    private $name;
+    protected $name;
 
     /*
      * For demonstration purpose, we use string as the product type.
@@ -37,12 +37,12 @@ class Producer extends \Thread
      *
      * @var string The product template.
      */
-    private $product;
+    protected $product;
 
     /**
      * @var int The amount of products to be produced.
      */
-    private $amount;
+    protected $amount;
 
 
     /**
@@ -51,18 +51,18 @@ class Producer extends \Thread
      *
      * @var int The amount of delay, in seconds, after each product is produced.
      */
-    private $delay;
+    protected $delay;
 
     /**
      * Constructor.
      *
-     * @param Threaded $inventory The shared inventory object.
+     * @param Inventory $inventory The shared inventory object.
      * @param string $name The name of current producer.
      * @param int $amount The amount of products to be produced.
      * @param string $product The template / prototype for producing products.
      * @param int $delay The delay, in seconds.
      */
-    public function __construct(\Threaded $inventory, $name, $amount, $product = '*', $delay = 0)
+    public function __construct(Inventory $inventory, $name, $amount, $product = '*', $delay = 0)
     {
         $this->inventory = $inventory;
 

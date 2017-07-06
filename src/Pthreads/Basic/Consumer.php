@@ -21,19 +21,19 @@ namespace ZerusTech\Tutorial\Pthreads\Basic;
 class Consumer extends \Thread
 {
     /**
-     * @var Threaded The shared inventory.
+     * @var Inventory The shared inventory.
      */
-    private $inventory;
+    protected $inventory;
 
     /**
      * @var string The name of current consumer.
      */
-    private $name;
+    protected $name;
 
     /**
      * @var int The amount of products to be consumed.
      */
-    private $amount;
+    protected $amount;
 
     /**
      * This property is used to slow down the thread to simulate variant
@@ -41,17 +41,17 @@ class Consumer extends \Thread
      *
      * @var int The amount of delay, in seconds, after each product is consumed.
      */
-    private $delay;
+    protected $delay;
 
     /**
      * Constructor.
      *
-     * @param Threaded $inventory The shared inventory object.
+     * @param Inventory $inventory The shared inventory object.
      * @param string $name The name of current consumer.
      * @param int $amount The amount of products to be consumed.
      * @param int $delay The delay, in seconds.
      */
-    public function __construct(\Threaded $inventory, $name, $amount, $delay = 0)
+    public function __construct(Inventory $inventory, $name, $amount, $delay = 0)
     {
         $this->inventory = $inventory;
 
